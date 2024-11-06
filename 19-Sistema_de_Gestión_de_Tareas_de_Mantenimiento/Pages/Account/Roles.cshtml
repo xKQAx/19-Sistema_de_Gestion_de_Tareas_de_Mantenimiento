@@ -1,0 +1,177 @@
+﻿@page
+@using DemoDeIdentity.Identity;
+@model DemoDeIdentity.Pages.Account.RolesModel
+@{
+    List<MyRol> MyRoles = ViewData["roles"] as List<MyRol>;
+}
+
+<div class="container">
+    <!-- Tabla de Roles -->
+    <div class="card">
+        <h2>Lista de Roles</h2>
+        @if (MyRoles == null || MyRoles.Count == 0)
+
+        {
+            <p>No hay roles disponibles</p>
+        }
+
+        else
+
+        {
+            <table class="roles-table">
+                <thead>
+                    <tr>
+                        <th>Nombre del Rol</th>
+                        <th>Correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in MyRoles)
+                    {
+                        <tr>
+                            <td><strong>@item.Name</strong></td>
+                            <td>@item.Seccion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+
+    <!-- Formulario de Registro de Rol -->
+    <div class="card">
+        <h2>Registrar Nuevo Rol</h2>
+        <form method="post">
+            <div>
+                <label for="Rol.Name">Nombre del Rol</label>
+                <input asp-for="Rol.Name" type="text" placeholder="Nombre del rol" />
+            </div>
+
+            <div>
+                <label for="Rol.Seccion">Correo</label>
+                <input asp-for="Rol.Seccion" type="email" value="@User.Identity.Name" readonly placeholder="Correo del usuario" />
+            </div>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Evitar el desbordamiento de contenido */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh; /* Para garantizar que el cuerpo ocupe al menos el alto de la pantalla */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centra verticalmente el contenido */
+    }
+
+    /* Contenedor principal */
+    .container {
+        display: flex;
+        justify-content: center; /* Centrado horizontal */
+        align-items: center; /* Centrado vertical */
+        flex-direction: column;
+        margin-top: 30px;
+        padding: 0 10px;
+        width: 100%;
+        max-width: 800px; /* Limitar el ancho máximo */
+        margin: 0 auto; /* Centrar el contenedor en la pantalla */
+    }
+
+    /* Card que contiene el formulario y la tabla */
+    .card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+        /* Títulos dentro de las cards */
+        .card h2 {
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para los campos de entrada */
+        .card label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .card input[type="text"],
+        .card input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+            /* Foco en los inputs */
+            .card input[type="text"]:focus,
+            .card input[type="email"]:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        /* Botón */
+        .card button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            /* Hover sobre el botón */
+            .card button:hover {
+                background-color: #0056b3;
+            }
+
+    /* Tabla de roles */
+    .roles-table {
+        margin-top: 20px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .roles-table th,
+        .roles-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .roles-table th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .roles-table td {
+            color: #333;
+        }
+
+        .roles-table tr:hover {
+            background-color: #f7f7f7;
+        }
+</style>

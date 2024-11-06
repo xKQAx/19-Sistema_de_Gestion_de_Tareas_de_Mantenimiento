@@ -1,0 +1,35 @@
+﻿@model IEnumerable<_19_Sistema_de_Gestión_de_Tareas_de_Mantenimiento.Models.TipoPersonal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPersonal1)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPersonal1)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TipoPersonalId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TipoPersonalId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TipoPersonalId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

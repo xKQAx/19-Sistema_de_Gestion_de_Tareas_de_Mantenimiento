@@ -1,0 +1,45 @@
+﻿@model IEnumerable<_19_Sistema_de_Gestión_de_Tareas_de_Mantenimiento.Models.CategoriaEquipo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCategoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipo.EquipoId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoriaEquiposId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CategoriaEquiposId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CategoriaEquiposId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<_19_Sistema_de_Gestión_de_Tareas_de_Mantenimiento.Models.Suministra>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Repuesto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor.ProveedorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Repuesto.RepuestoId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProveedorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProveedorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProveedorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
